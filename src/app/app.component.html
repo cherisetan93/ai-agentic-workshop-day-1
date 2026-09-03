@@ -5,10 +5,10 @@
     <p class="intro">Paste an HTTP or HTTPS URL and Snip will create a short link backed by the local API.</p>
   </section>
 
-  <section class="card">
-    <form (ngSubmit)="createLink()" #linkForm="ngForm" novalidate>
+  <section class="composer-card" aria-label="Create a short link">
+    <form class="composer-form" (ngSubmit)="createLink()" #linkForm="ngForm" novalidate>
       <label for="url">URL to shorten</label>
-      <div class="form-row">
+      <div class="composer">
         <input
           id="url"
           name="url"
@@ -18,25 +18,25 @@
           [(ngModel)]="url"
           [disabled]="saving()"
         />
-        <button type="submit" [disabled]="saving()">
+        <button class="primary-action" type="submit" [disabled]="saving()">
           {{ saving() ? 'Snipping...' : 'Snip it' }}
         </button>
       </div>
     </form>
 
     @if (error()) {
-      <p class="message error">{{ error() }}</p>
+      <p class="notice error">{{ error() }}</p>
     }
 
     @if (latestLink(); as link) {
-      <p class="message success">
+      <p class="notice success">
         Short link:
         <a [href]="link.shortUrl" target="_blank" rel="noreferrer">{{ link.shortUrl }}</a>
       </p>
     }
   </section>
 
-  <section class="card">
+  <section class="links-card">
     <div class="section-heading">
       <h2>All links</h2>
       <button class="secondary" type="button" (click)="loadLinks()" [disabled]="loading()">

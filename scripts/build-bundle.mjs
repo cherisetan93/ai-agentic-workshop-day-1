@@ -6,7 +6,8 @@ import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const push = process.argv.includes('--push');
-const repoRoot = run('git', ['rev-parse', '--show-toplevel'], { capture: true }).stdout.trim();
+let repoRoot = process.cwd();
+repoRoot = run('git', ['rev-parse', '--show-toplevel'], { capture: true }).stdout.trim();
 const bundleDir = path.join(repoRoot, 'bundle');
 const frontendDir = path.join(repoRoot, 'frontend');
 

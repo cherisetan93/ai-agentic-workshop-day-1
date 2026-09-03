@@ -94,3 +94,17 @@ git push
 ```
 
 Use the same pattern for `backend/` or `cli/`: commit and push inside the submodule folder, then run `git submodule update --remote <path>`, `git add <path>`, and commit the pointer bump in the superproject.
+
+## Generated bundle branch
+
+The `bundle/` submodule tracks the generated `bundle` branch. Do not hand-edit files inside it. To rebuild the deployable bundle, run:
+
+```sh
+node scripts/build-bundle.mjs
+```
+
+The script updates the source submodules, builds the Angular frontend, assembles `bundle/` with the backend, CLI, static UI, Bun/Docker/Railway deploy files, commits changed generated output, and bumps submodule pointers safely. Add `--push` to publish the generated `bundle` branch and `main` pointer updates:
+
+```sh
+node scripts/build-bundle.mjs --push
+```

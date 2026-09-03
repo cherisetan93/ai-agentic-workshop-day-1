@@ -10,3 +10,7 @@
 	path = cli
 	url = https://github.com/cherisetan93/ai-agentic-workshop-day-1
 	branch = cli
+[submodule "bundle"]
+	path = bundle
+	url = https://github.com/cherisetan93/ai-agentic-workshop-day-1
+	branch = bundle

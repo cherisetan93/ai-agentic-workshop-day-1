@@ -31,7 +31,7 @@
     @if (latestLink(); as link) {
       <p class="notice success">
         Short link:
-        <a [href]="link.shortUrl" target="_blank" rel="noreferrer">{{ link.shortUrl }}</a>
+        <a [href]="shortLink(link)" target="_blank" rel="noreferrer">{{ shortLink(link) }}</a>
       </p>
     }
   </section>
@@ -58,7 +58,7 @@
             @for (link of links(); track link.code) {
               <tr>
                 <td>
-                  <a [href]="link.shortUrl" target="_blank" rel="noreferrer">{{ link.code }}</a>
+                  <a [href]="shortLink(link)" target="_blank" rel="noreferrer">{{ link.code }}</a>
                 </td>
                 <td class="url-cell">
                   <a [href]="link.url" target="_blank" rel="noreferrer">{{ link.url }}</a>

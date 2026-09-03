@@ -37,4 +37,17 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Shorten links');
   });
+
+  it('should display short links on the current website origin', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+
+    expect(app.shortLink({
+      code: 'abc123',
+      url: 'https://example.com',
+      shortUrl: 'http://localhost:3000/abc123',
+      hits: 0,
+      createdAt: '2026-09-03T00:00:00.000Z'
+    })).toBe(`${globalThis.location.origin}/abc123`);
+  });
 });

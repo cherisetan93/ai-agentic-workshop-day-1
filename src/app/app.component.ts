@@ -58,6 +58,13 @@ export class AppComponent implements OnInit {
       });
   }
 
+  shortLink(link: SnipLink) {
+    const origin = globalThis.location?.origin;
+    return origin && origin !== 'null'
+      ? `${origin.replace(/\/+$/, '')}/${encodeURIComponent(link.code)}`
+      : link.shortUrl;
+  }
+
   private isHttpUrl(value: string) {
     try {
       const url = new URL(value);
